@@ -108,7 +108,6 @@ public class Model {
   
 
   public double evaluar(Diseño vestidoBase) throws IOException{
-    boolean flag = true;
     double coincidenciaActual = 0;
     coincidenciaActual = coincidenciaActual + diseño(vestidoBase);
     coincidenciaActual = coincidenciaActual + originalidad(vestidoBase);
@@ -138,26 +137,27 @@ public class Model {
     ObjectInputStream ois = new ObjectInputStream(fin);
     try {
       Object aux = ois.readObject();
+      Vestido vB = vestidoBase.getVestido();
       while (aux != null) {
         double suma = 0;
         Diseño temp = (Diseño) aux;
         Vestido vestido = temp.getVestido();
-        if (vestidoBase.tiro == vestido.getTiro()) {
+        if (vB.tiro == vestido.getTiro()) {
           suma = suma + 0.8;
         }
-        if (vestidoBase.escote == vestido.getEscote()) {
+        if (vB.escote == vestido.getEscote()) {
           suma = suma + 0.8;
         }
-        if (vestidoBase.mangas == vestido.getMangas()) {
+        if (vB.mangas == vestido.getMangas()) {
           suma = suma + 0.8;
         }
-        if (vestidoBase.falda == vestido.getFalda()) {
+        if (vB.falda == vestido.getFalda()) {
           suma = suma + 0.8;
         }
-        if (vestidoBase.largoF == vestido.getLargoF()) {
+        if (vB.largoF == vestido.getLargoF()) {
           suma = suma + 0.8;
         }
-        if (vestidoBase.decoracion == vestido.getDecoracion()) {
+        if (vB.decoracion == vestido.getDecoracion()) {
           suma = suma + 0.8;
         }
         if (suma > originalidad) {
