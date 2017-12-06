@@ -2,15 +2,14 @@ package Sandy;
 
 public class Vestido {
 
-  String top, falda, escote, mangas, largoF, tela, decoracion;
+  String tiro, falda, escote, mangas, largoF, decoracion;
 
   public Vestido(Vestido base) {
-    top = base.getTop();
+    tiro = base.getTiro();
     falda = base.getFalda();
     largoF = base.getLargoF();
     escote = base.getEscote();
     mangas = base.getMangas();
-    tela = base.getTela();
     decoracion = base.getDecoracion();
   }
 
@@ -34,12 +33,8 @@ public class Vestido {
     return mangas;
   }
 
-  public String getTela() {
-    return tela;
-  }
-
-  public String getTop() {
-    return top;
+  public String getTiro() {
+    return tiro;
   }
 
   public void setEscote(String escote) {
@@ -62,12 +57,8 @@ public class Vestido {
     this.mangas = mangas;
   }
 
-  public void setTela(String tela) {
-    this.tela = tela;
-  }
-
-  public void setTop(String top) {
-    this.top = top;
+  public void setTiro(String tiro) {
+    this.tiro = tiro;
   }
 
   @Override
