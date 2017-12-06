@@ -112,10 +112,11 @@ public class Model {
     }
   
   public Vestido dia(Vestido v, Etiqueta e){
+    int a;
     //preguntar si falda es larga
     if(checarEstilo(0,v) == 1)
         v = cambiarEstilo(0,v,0);
-    //preguntar si maga es larga
+    //preguntar si manga es larga
     if(checarEstilo(2,v) == 1)
         v = cambiarEstilo(2,v,0);
     //preguntar si escote es cerrado
@@ -124,22 +125,126 @@ public class Model {
     //tono = 1; <- es claro
     switch(e.getEvento()){
         case "Boda":            
-            if(checarEstilo(4,v) != 0)
-                v = cambiarEstilo(4,v,0);
+            if(checarEstilo(0,v) != 0)
+                v = cambiarEstilo(0,v,0);
             if(!v.getDecoracion().equals("Encaje")||!v.getDecoracion().equals("Sin")){
-                
+                a = (int) (Math.random() * 2);
+                if(a == 1) v.setDecoracion("Encaje");
+                else v.setDecoracion("Sin");
+            }
+            if(!v.getLargoF().equals("Rodilla")||v.getLargoF().equals("Tobillo")){
+                a = (int) (Math.random() * 2);
+                if(a == 1) v.setLargoF("Rodilla");
+                else v.setLargoF("Tobillo");
             }
             break;
         case "XV":
+            if(checarEstilo(0,v) != 1)
+                v = cambiarEstilo(0,v,1);
+            if(!v.getLargoF().equals("Rodilla")||v.getLargoF().equals("ARodilla")){
+                a = (int) (Math.random() * 2);
+                if(a == 1) v.setLargoF("Rodilla");
+                else v.setLargoF("ARodilla");
+            }
             break;
     }
       return v;
   }
   
-  public Vestido noche(Vestido vB, Etiqueta e){
-      Vestido v = vB;
+  public Vestido noche(Vestido v, Etiqueta e){
+    int a;
+    //preguntar si falda es corta
+    if(checarEstilo(3,v) == 0)
+        v = cambiarEstilo(3,v,1);
+    //tono = 0; <- es oscuro
+    switch(e.getEvento()){
+        case "Boda":            
+            if(!v.getDecoracion().equals("Aplicaciones")||!v.getDecoracion().equals("Sin")||!v.getDecoracion().equals("AberturaP")){
+                a = (int) (Math.random() * 3);
+                switch(a){
+                    case 0:
+                        v.setDecoracion("Sin");
+                        break;
+                    case 1:
+                        v.setDecoracion("Aplicaciones");
+                        break;
+                    case 2:
+                        v.setDecoracion("AberturaP");
+                        break;
+                }
+            }
+            switch(e.getLugar()){
+                case "Salon":
+                    if(!v.getLargoF().equals("Largo")||v.getLargoF().equals("Tobillo")){
+                        a = (int) (Math.random() * 2);
+                        if(a == 1) v.setLargoF("Largo");
+                        else v.setLargoF("Tobillo");
+                    }
+                    break;
+                case "Playa":
+                    v.setDecoracion("Tobillo");
+                    break;
+            }
+            break;
+        case "XV":
+            if(!v.getDecoracion().equals("Aplicaciones")||!v.getDecoracion().equals("Sin")||!v.getDecoracion().equals("Moño")){
+                a = (int) (Math.random() * 3);
+                switch(a){
+                    case 0:
+                        v.setDecoracion("Sin");
+                        break;
+                    case 1:
+                        v.setDecoracion("Aplicaciones");
+                        break;
+                    case 2:
+                        v.setDecoracion("Moño");
+                        break;
+                }
+                switch(e.getLugar()){
+                case "Salon":
+                    if(!v.getLargoF().equals("Largo")||!v.getLargoF().equals("Tobillo")||!v.getLargoF().equals("Rodilla")){
+                         a = (int) (Math.random() * 3);
+                        switch(a){
+                            case 0:
+                                v.setLargoF("Largo");
+                                break;
+                            case 1:
+                                v.setLargoF("Tobillo");
+                                break;
+                            case 2:
+                                v.setLargoF("Rodilla");
+                                break;
+                        }
+                    }
+                    break;
+                case "Playa":
+                    if(!v.getLargoF().equals("Tobillo")||!v.getLargoF().equals("Rodilla")){
+                         a = (int) (Math.random() * 2);
+                        switch(a){
+                            case 0:
+                                v.setLargoF("Tobillo");
+                                break;
+                            case 1:
+                                v.setLargoF("Rodilla");
+                                break;
+                        }
+                    }
+                    break;
+            }
+            
+            if(checarEstilo(0,v) != 1)
+                v = cambiarEstilo(0,v,1);
+            if(!v.getLargoF().equals("Rodilla")||v.getLargoF().equals("ARodilla")){
+                a = (int) (Math.random() * 2);
+                if(a == 1) v.setLargoF("Rodilla");
+                else v.setLargoF("ARodilla");
+            }
+            break;
+        }
+    }
       return v;
   }
+  
 
   public double evaluar(Diseño vestidoBase) throws IOException{
     double coincidenciaActual = 0;
