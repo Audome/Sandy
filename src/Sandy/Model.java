@@ -58,11 +58,11 @@ public class Model {
             cambiarPieza(v, a, lista);
         }
         else{
-            cambiarPieza(v, 0, lista);
+            cambiarPieza(v, 1, lista);
         }
         //modifica ligeramente el vestido
-        for(int i = 0; i < 2; i++){
-            a = (int) (Math.random() * 4) + 2;
+        for(int i = 0; i < 1; i++){
+            a = (int) (Math.random() * 3) + 2;
             cambiarPieza(v, a, lista);
         }
         //realiza readaptación
@@ -73,34 +73,26 @@ public class Model {
         int a = (int) (Math.random() * lista.size());
         Vestido r = lista.get(a);
         switch(num){
-            //top
             case 0:
-                vB.setTop(r.getTop());
+                vB.setFalda(r.getFalda());
                 break;
             //falda
             case 1:
-                vB.setFalda(r.getFalda());
+                vB.setEscote(r.getEscote());
                 break;
             //escote
             case 2:
-                vB.setEscote(r.getEscote());
+                vB.setMangas(r.getMangas());
                 break;
             //manga
             case 3:
-                vB.setMangas(r.getMangas());
+                vB.setLargoF(r.getLargoF());
                 break;
             //largo falda
             case 4:
-                vB.setLargoF(r.getLargoF());
-                break;
-            //Tela
-            case 5:
-                vB.setTela(r.getTela());
-                break;
-            //Decoración
-            case 6:
                 vB.setDecoracion(r.getDecoracion());
                 break;
+            //Decoración
         }
         
         return vB;
