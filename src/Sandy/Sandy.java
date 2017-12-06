@@ -30,7 +30,6 @@ public class Sandy {
         //luego llama evaluar
         calif = m.evaluar(d);
         //finalmente llama guardar. Guardar decide si lo guarda o no
-        d = new Diseño(v,e);
         m.guardar(d);
 
   }
