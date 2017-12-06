@@ -26,9 +26,9 @@ public class Sandy {
         //System.out.println("Buscando coincidencias");
         lista = m.buscar(e, porCoincidencia);
         //luego reusar. Reusar elige el vestido Base y le hace las modificaciones necesarias
-        v = m.reusar(e, lista);
+        d = m.reusar(e, lista);
         //luego llama evaluar
-        calif = m.evaluar(v);
+        calif = m.evaluar(d);
         //finalmente llama guardar. Guardar decide si lo guarda o no
         m.guardar(d);
 

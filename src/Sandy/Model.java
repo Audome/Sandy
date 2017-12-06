@@ -48,7 +48,8 @@ public class Model {
     return lista;
   }
 
-   public Vestido reusar(Etiqueta l, ArrayList<Vestido>  lista){
+   public Diseño reusar(Etiqueta l, ArrayList<Vestido>  lista){
+        Diseño d;
         //elige vestido base
         int a = (int) (Math.random() * lista.size());
         Vestido v = lista.get(a);        
@@ -66,7 +67,9 @@ public class Model {
             cambiarPieza(v, a, lista);
         }
         //realiza readaptación
-        return v;
+        
+        d = new Diseño(v, l);
+        return d;
     }
 
   public Vestido cambiarPieza(Vestido vB, int num,ArrayList<Vestido> lista){        
@@ -104,7 +107,7 @@ public class Model {
   
   
 
-  public double evaluar(Vestido vestidoBase) throws IOException{
+  public double evaluar(Diseño vestidoBase) throws IOException{
     boolean flag = true;
     double coincidenciaActual = 0;
     coincidenciaActual = coincidenciaActual + diseño(vestidoBase);
@@ -123,13 +126,13 @@ public class Model {
     }
   }
 
-  public double diseño(Vestido vestidoBase) {
+  public double diseño(Diseño vestidoBase) {
     double diseño = 0;
 
     return diseño;
   }
 
-  public double originalidad(Vestido vestidoBase) throws IOException {
+  public double originalidad(Diseño vestidoBase) throws IOException {
     double originalidad = 0;
     FileInputStream fin = new FileInputStream("Vestidos.txt");
     ObjectInputStream ois = new ObjectInputStream(fin);
