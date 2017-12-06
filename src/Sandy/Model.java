@@ -93,6 +93,10 @@ public class Model {
                 vB.setDecoracion(r.getDecoracion());
                 break;
             //Decoración
+            case 5:
+                vB.setTiro(r.getTiro());
+                break;
+                //Tiro
         }
         
         return vB;
