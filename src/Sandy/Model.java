@@ -123,7 +123,12 @@ public class Model {
         v = cambiarEstilo(1,v,0);
     //tono = 1; <- es claro
     switch(e.getEvento()){
-        case "boda":            
+        case "Boda":            
+            if(checarEstilo(4,v) != 0)
+                v = cambiarEstilo(4,v,0);
+            if(!v.getDecoracion().equals("Encaje")||!v.getDecoracion().equals("Sin")){
+                
+            }
             break;
         case "XV":
             break;
