@@ -66,8 +66,14 @@ public class Model {
             a = (int) (Math.random() * 3) + 2;
             cambiarPieza(v, a, lista);
         }
-        //realiza readaptación
-        
+        //realiza readaptación      
+        v = coordinar(v,l);
+        if(l.getTiempo() == "dia"){
+            v = dia(v,l);
+        }
+        else{
+            v = noche(v,l);
+        }
         d = new Diseño(v, l);
         return d;
     }
@@ -105,7 +111,15 @@ public class Model {
         return vB;
     }
   
+  public Vestido dia(Vestido vB, Etiqueta e){
+      Vestido v = vB;
+      return v;
+  }
   
+  public Vestido noche(Vestido vB, Etiqueta e){
+      Vestido v = vB;
+      return v;
+  }
 
   public double evaluar(Diseño vestidoBase) throws IOException{
     double coincidenciaActual = 0;
@@ -130,6 +144,87 @@ public class Model {
 
     return diseño;
   }
+  
+  private Vestido coordinar(Vestido vB, Etiqueta e) {
+        Vestido v = vB;
+        int valor;
+        if(e.getTipoC() == "Pera"){
+            //menos en falda, checa si falda es -
+            valor = checarEstilo(0, v);
+            //si no, cambia estilo
+            if(valor != 0){
+                v.setFalda(cambiarEstilo(0));
+            }
+        }
+        else{
+            //Sólo si es ++
+            if(checarEstilo(0,v) == 1 && checarEstilo(2,v) == 1){
+                int a = (int) (Math.random() * 2);
+                //si es 0 cambia falda, si es 1, cambia mangas
+                if(a == 0)
+                    v.setFalda(cambiarEstilo(0));
+                else
+                    v.setMangas(cambiarEstilo(1));             
+            }
+        }        
+        return v;
+    
+  }
+  
+  private int checarEstilo(int p, Vestido vB){
+          int e = 0;
+          switch(p){
+            case 0:
+                //falda amplia?
+                if(vB.getFalda().equals("Circular")||vB.getFalda().equals("Doble circular")||vB.getFalda().equals("Godette")
+                        ||vB.getFalda().equals("Plisada")||vB.getFalda().equals("Tableada")||vB.getFalda().equals("Sirena"))
+                    e = 1;
+                else
+                    e = 0;
+                break;          
+            case 1:
+                //escote abierto?
+                if(vB.getEscote().equals("V")||vB.getEscote().equals("Redondo")||vB.getEscote().equals("Corazon")||
+                        vB.getEscote().equals("Recto")||vB.getEscote().equals("HCaidos"))
+                    e = 1;
+                else
+                    e = 0;
+                break;            
+            case 2:
+                if(vB.getMangas().equals("Strapless")||vB.getMangas().equals("Tirantes")||vB.getMangas().equals("Sin"))
+                    e = 0;
+                else
+                    e = 1;
+                break;
+            //sin manga?
+            case 3:
+                if(vB.getLargoF().equals("Largo")||vB.getLargoF().equals("Tobillo"))
+                    e = 1;
+                else
+                    e = 0;
+                break;
+            //falda larga?
+            case 4:
+                break;
+            //Decoración
+            case 5:
+                if(vB.getTiro().equals("Alto"))
+                    e = 0;
+                else if(vB.getTiro().equals("Medio"))
+                    e = 1;
+                else if(vB.getTiro().equals("Bajo"))
+                    e =2;
+                break;
+                //Tiro
+          }
+          return e;
+    }
+  
+    private String cambiarEstilo(int p){
+          String e = "";
+          return e;
+    }
+
 
   public double originalidad(Diseño vestidoBase) throws IOException {
     double originalidad = 0;
@@ -174,4 +269,5 @@ public class Model {
 
     return originalidad;
   }
+
 }
