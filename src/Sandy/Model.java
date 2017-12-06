@@ -66,14 +66,14 @@ public class Model {
             a = (int) (Math.random() * 3) + 2;
             cambiarPieza(v, a, lista);
         }
-        //realiza readaptación      
-        v = coordinar(v,l);
+        //realiza readaptación 
         if(l.getTiempo() == "dia"){
             v = dia(v,l);
         }
         else{
             v = noche(v,l);
         }
+        v = coordinar(v,l);
         d = new Diseño(v, l);
         return d;
     }
@@ -244,7 +244,6 @@ public class Model {
     }
       return v;
   }
-  
 
   public double evaluar(Diseño vestidoBase) throws IOException{
     double coincidenciaActual = 0;
@@ -345,9 +344,204 @@ public class Model {
           return e;
     }
   
-    private Vestido cambiarEstilo(int parte, Vestido vB, int estilo){
-          
-          return vB;
+    private Vestido cambiarEstilo(int parte, Vestido v, int estilo){
+          int a;
+          switch(parte){
+            case 0:
+                //falda 
+                if(estilo == 0){
+                    a = (int) (Math.random() * 4);
+                    switch(a){
+                        case 0:
+                            v.setFalda("Recta");
+                            break;
+                        case 1:
+                            v.setFalda("Lapiz");
+                            break;
+                        case 2:
+                            v.setFalda("A");
+                            break;
+                        case 3:
+                            v.setFalda("Tulipan");
+                            break;
+                    }
+                }
+                else{
+                    a = (int) (Math.random() * 6);
+                    switch(a){
+                        case 0:
+                            v.setFalda("Circular");
+                            break;
+                        case 1:
+                            v.setFalda("DCircular");
+                            break;
+                        case 2:
+                            v.setFalda("Godette");
+                            break;
+                        case 3:
+                            v.setFalda("Plisada");
+                            break;
+                        case 4:
+                            v.setFalda("Tableada");
+                            break;
+                        case 5:
+                            v.setFalda("Sirena");
+                            break;                            
+                    }
+                }
+                break;          
+            case 1:
+                //escote abierto
+                if(estilo == 0){
+                    a = (int) (Math.random() * 6);
+                    switch(a){
+                        case 0:
+                            v.setEscote("V");
+                            break;
+                        case 1:
+                            v.setEscote("Redondo");
+                            break;
+                        case 2:
+                            v.setEscote("Corazon");
+                            break;
+                        case 3:
+                            v.setEscote("Recto");
+                            break;
+                        case 4:
+                            v.setEscote("HCaidos");
+                            break;
+                    }
+                }
+                else{
+                        a = (int) (Math.random() * 6);
+                    switch(a){
+                        case 0:
+                            v.setEscote("Halter");
+                            break;
+                        case 1:
+                            v.setEscote("Asimetrico");
+                            break;
+                        case 2:
+                            v.setEscote("Ilusion");
+                            break;
+                        case 3:
+                            v.setEscote("Alto");
+                            break;
+                        case 4:
+                            v.setEscote("Jewel");
+                            break;
+                    }
+                }
+                break;            
+            case 2:
+                //manga sin
+                if(estilo == 0){
+                    a = (int) (Math.random() * 3);
+                    switch(a){
+                        case 0:
+                            v.setMangas("Sin");
+                            break;
+                        case 1:
+                            v.setMangas("Tirantes");
+                            break;
+                        case 2:
+                            v.setMangas("Strapless");
+                            break;
+                    }
+                }
+                else{
+                a = (int) (Math.random() * 4);
+                    switch(a){
+                        case 0:
+                            v.setMangas("Cap");
+                            break;
+                        case 1:
+                            v.setMangas("Codo");
+                            break;
+                        case 2:
+                            v.setMangas("3/4");
+                            break;
+                        case 3:
+                            v.setMangas("Larga");
+                            break;
+                    }
+                }
+                break;
+            case 3:
+                //largo f
+                if(estilo == 0){
+                    a = (int) (Math.random() * 2);
+                    switch(a){
+                        case 0:
+                            v.setLargoF("ARodilla");
+                            break;
+                        case 1:
+                            v.setLargoF("Rodilla");
+                            break;
+                    }
+                }
+                else{
+                    a = (int) (Math.random() * 2);
+                    switch(a){
+                        case 0:
+                            v.setLargoF("Tobillo");
+                            break;
+                        case 1:
+                            v.setLargoF("Largo");
+                            break;
+                    }
+                }
+                break;            
+            case 4:
+                //Decoración
+                a = (int) (Math.random() * 10);
+                switch(a){
+                    case 0:
+                        v.setDecoracion("Aplicacion_escote");
+                        break;
+                    case 1:
+                        v.setDecoracion("Aplicacion_cintura");
+                        break;
+                    case 2:
+                        v.setDecoracion("Aplicacion_falda");
+                        break;
+                    case 3:
+                        v.setDecoracion("Encaje_escote");
+                        break;
+                    case 4:
+                        v.setDecoracion("Encaje_mangas");
+                        break;
+                    case 5:
+                        v.setDecoracion("Encaje_blusa");
+                        break;
+                    case 6:
+                        v.setDecoracion("Encaje_falda");
+                        break;
+                    case 7:
+                        v.setDecoracion("Moño_cintura");
+                        break;
+                    case 8:
+                        v.setDecoracion("Sin");
+                        break;
+                    case 9:
+                        v.setDecoracion("Abertura");
+                        break;
+                }
+                break;            
+            case 5:
+                //Tiro
+                a = (int) (Math.random() * 2);
+                switch(a){                    
+                    case 0:
+                        v.setTiro("Alto");
+                        break;                    
+                    case 1:
+                        v.setTiro("Medio");
+                        break;                        
+                }
+                break;                
+          }
+          return v;
     }
 
 
