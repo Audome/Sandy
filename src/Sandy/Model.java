@@ -1,21 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Sandy;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
-/**
- *
- * @author Audome
- */
 public class Model {
 
   public Model() {
@@ -58,51 +45,67 @@ public class Model {
     return lista;
   }
 
-  public Vestido reusar(Etiqueta l, ArrayList lista) {
-    Vestido v = new Vestido();
-
-    return v;
-  }
-
-  public Vestido cambiarPieza(Vestido vB, int num, ArrayList lista) {
-    Vestido v = new Vestido();
-    int tam = lista.size();
-    int a = (int) (Math.random() * tam) + 1;
-    switch (num) {
-      //top
-      case 0:
-        break;
-      //falda
-      case 1:
-        break;
-      //escote
-      case 2:
-        break;
-      //manga
-      case 3:
-        break;
-      //falda
-      case 4:
-        break;
-      //largo falda
-      case 5:
-        break;
-      //Tela
-      case 6:
-        break;
-      //Decoración
-      case 7:
-        break;
+   public Vestido reusar(Etiqueta l, ArrayList<Vestido>  lista){
+        //elige vestido base
+        int a = (int) (Math.random() * lista.size());
+        Vestido v = lista.get(a);        
+        //elige la parte esencial del vestido
+        if("Reloj".equals(l.getTipoC())){
+            a = (int) (Math.random() * 2);
+            cambiarPieza(v, a, lista);
+        }
+        else{
+            cambiarPieza(v, 0, lista);
+        }
+        //modifica ligeramente el vestido
+        for(int i = 0; i < 2; i++){
+            a = (int) (Math.random() * 4) + 2;
+            cambiarPieza(v, a, lista);
+        }
+        //realiza readaptación
+        return v;
     }
 
-    return v;
-  }
+  public Vestido cambiarPieza(Vestido vB, int num,ArrayList<Vestido> lista){        
+        int a = (int) (Math.random() * lista.size());
+        Vestido r = lista.get(a);
+        switch(num){
+            //top
+            case 0:
+                vB.setTop(r.getTop());
+                break;
+            //falda
+            case 1:
+                vB.setFalda(r.getFalda());
+                break;
+            //escote
+            case 2:
+                vB.setEscote(r.getEscote());
+                break;
+            //manga
+            case 3:
+                vB.setMangas(r.getMangas());
+                break;
+            //largo falda
+            case 4:
+                vB.setLargoF(r.getLargoF());
+                break;
+            //Tela
+            case 5:
+                vB.setTela(r.getTela());
+                break;
+            //Decoración
+            case 6:
+                vB.setDecoracion(r.getDecoracion());
+                break;
+        }
+        
+        return vB;
+    }
+  
+  
 
-  int evaluar(Vestido v) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  public double revisar(Vestido vestidoBase) throws IOException{
+  public double evaluar(Vestido vestidoBase) throws IOException{
     boolean flag = true;
     double coincidenciaActual = 0;
     coincidenciaActual = coincidenciaActual + diseño(vestidoBase);
@@ -172,4 +175,8 @@ public class Model {
 
     return originalidad;
   }
+
+    ArrayList buscar(Etiqueta e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
