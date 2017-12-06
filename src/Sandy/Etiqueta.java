@@ -8,12 +8,12 @@ class Etiqueta {
   String lugar;
   String color;
 
-  public Etiqueta(String tc, String t, String ev, String l,String c) {
+  public Etiqueta(String tc, String t, String ev, String l, String color) {
     this.tipoC = tc;
     this.tiempo = t;
     this.evento = ev;
     this.lugar = l;
-    this.color = c;
+    this.color = color;
   }
 
   public String getTipoC() {
