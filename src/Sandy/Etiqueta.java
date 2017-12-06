@@ -15,12 +15,14 @@ class Etiqueta {
   String tiempo;
   String evento;
   String lugar;
+  String color;
 
-  public Etiqueta(String tc, String t, String ev, String l) {
+  public Etiqueta(String tc, String t, String ev, String l,String c) {
     this.tipoC = tc;
     this.tiempo = t;
     this.evento = ev;
     this.lugar = l;
+    this.color = c;
   }
 
   public String getTipoC() {
@@ -39,6 +41,10 @@ class Etiqueta {
     return this.lugar;
   }
 
+  public String getColor() {
+    return color;
+  }
+
   public void setTipoC(String d) {
     this.tipoC = d;
   }
@@ -54,4 +60,9 @@ class Etiqueta {
   public void setTiempo(String d) {
     this.tiempo = d;
   }
+  
+  public void setColor(String color) {
+    this.color = color;
+  }
+  
 }

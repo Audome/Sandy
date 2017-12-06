@@ -32,17 +32,20 @@ public class Model {
         int total = 0;
         Diseño temp = (Diseño) aux;
         Etiqueta etiqueta = temp.getEtiqueta();
+        if (e.tipoC == etiqueta.getTipoC()) {
+          total = total + 30;
+        }
         if (e.evento == etiqueta.getEvento()) {
-          total = total + 25;
+          total = total + 20;
         }
         if (e.lugar == etiqueta.getLugar()) {
-          total = total + 25;
-        }
-        if (e.tipoC == etiqueta.getTipoC()) {
-          total = total + 25;
+          total = total + 20;
         }
         if (e.tiempo == etiqueta.getTiempo()) {
-          total = total + 25;
+          total = total + 20;
+        }
+        if (e.color == etiqueta.getColor()) {
+          total = total + 10;
         }
         if (total >= coin) {
           lista.add(temp.getVestido());
@@ -137,26 +140,23 @@ public class Model {
         double suma = 0;
         Diseño temp = (Diseño) aux;
         Vestido vestido = temp.getVestido();
-        if (vestidoBase.top == vestido.getTop()) {
-          suma = suma + 0.57;
+        if (vestidoBase.tiro == vestido.getTiro()) {
+          suma = suma + 0.8;
         }
         if (vestidoBase.escote == vestido.getEscote()) {
-          suma = suma + 0.57;
+          suma = suma + 0.8;
         }
         if (vestidoBase.mangas == vestido.getMangas()) {
-          suma = suma + 0.57;
+          suma = suma + 0.8;
         }
         if (vestidoBase.falda == vestido.getFalda()) {
-          suma = suma + 0.57;
+          suma = suma + 0.8;
         }
         if (vestidoBase.largoF == vestido.getLargoF()) {
-          suma = suma + 0.57;
-        }
-        if (vestidoBase.tela == vestido.getTela()) {
-          suma = suma + 0.57;
+          suma = suma + 0.8;
         }
         if (vestidoBase.decoracion == vestido.getDecoracion()) {
-          suma = suma + 0.57;
+          suma = suma + 0.8;
         }
         if (suma > originalidad) {
           originalidad = suma;
