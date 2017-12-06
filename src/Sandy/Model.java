@@ -111,8 +111,23 @@ public class Model {
         return vB;
     }
   
-  public Vestido dia(Vestido vB, Etiqueta e){
-      Vestido v = vB;
+  public Vestido dia(Vestido v, Etiqueta e){
+    //preguntar si falda es larga
+    if(checarEstilo(0,v) == 1)
+        v = cambiarEstilo(0,v,0);
+    //preguntar si maga es larga
+    if(checarEstilo(2,v) == 1)
+        v = cambiarEstilo(2,v,0);
+    //preguntar si escote es cerrado
+    if(checarEstilo(1,v) == 1)
+        v = cambiarEstilo(1,v,0);
+    //tono = 1; <- es claro
+    switch(e.getEvento()){
+        case "boda":            
+            break;
+        case "XV":
+            break;
+    }
       return v;
   }
   
@@ -139,9 +154,9 @@ public class Model {
     }
   }
 
-  public double diseño(Diseño vestidoBase) {
+  public double diseño(Diseño vB) {
     double diseño = 0;
-
+    
     return diseño;
   }
   
@@ -153,7 +168,7 @@ public class Model {
             valor = checarEstilo(0, v);
             //si no, cambia estilo
             if(valor != 0){
-                v.setFalda(cambiarEstilo(0));
+                v.setFalda(cambiarEstilo(0,v,0).getFalda());
             }
         }
         else{
@@ -162,9 +177,9 @@ public class Model {
                 int a = (int) (Math.random() * 2);
                 //si es 0 cambia falda, si es 1, cambia mangas
                 if(a == 0)
-                    v.setFalda(cambiarEstilo(0));
+                    v.setFalda(cambiarEstilo(0,v,0).getFalda());
                 else
-                    v.setMangas(cambiarEstilo(1));             
+                    v.setMangas(cambiarEstilo(2,v,1).getMangas());             
             }
         }        
         return v;
@@ -220,9 +235,9 @@ public class Model {
           return e;
     }
   
-    private String cambiarEstilo(int p){
-          String e = "";
-          return e;
+    private Vestido cambiarEstilo(int parte, Vestido vB, int estilo){
+          
+          return vB;
     }
 
 
