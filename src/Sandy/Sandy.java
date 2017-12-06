@@ -11,10 +11,10 @@ public class Sandy {
     m = new Model();
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     ArrayList<Vestido>  lista;
     Vestido v; Diseño d;
-    int calif = 0;
+    double calif = 0;
      //aquí pondremos los valores de las etiquetas
         String tc = "", t = "", ev = "", l = "", cc = "";
         //los porcentajes van de 0, 25, 50, 75 y 100
