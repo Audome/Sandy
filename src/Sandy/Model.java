@@ -175,8 +175,4 @@ public class Model {
 
     return originalidad;
   }
-
-    ArrayList buscar(Etiqueta e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

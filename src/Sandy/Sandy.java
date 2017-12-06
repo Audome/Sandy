@@ -13,7 +13,7 @@ public class Sandy {
 
   public static void main(String[] args) {
     ArrayList<Vestido>  lista;
-    Vestido v;
+    Vestido v; Diseño d;
     int calif = 0;
      //aquí pondremos los valores de las etiquetas
         String tc = "", t = "", ev = "", l = "";
@@ -30,7 +30,7 @@ public class Sandy {
         //luego llama evaluar
         calif = m.evaluar(v);
         //finalmente llama guardar. Guardar decide si lo guarda o no
-        m.guardar(v, e);
+        m.guardar(d);
 
   }
 
