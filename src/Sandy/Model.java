@@ -8,7 +8,6 @@ public class Model {
   public Model() {
 
   }
-
   public static ArrayList buscar(Etiqueta e, int coin) throws IOException {
     ArrayList<Vestido> lista = new ArrayList();
     BufferedReader br = null;
@@ -19,7 +18,7 @@ public class Model {
         int total = 0;
         String[] partes = line.split(",");
         //System.out.println(partes.length);
-        //System.out.println(partes[0]);
+        //System.out.println(partes[i]);
         if (partes.length > 1) {
           if (e.tipoC.equals(partes[0])) {
             total = total + 30;
@@ -58,20 +57,23 @@ public class Model {
     //elige vestido base
     int a = (int) (Math.random() * lista.size());
     Vestido v = lista.get(a);
+    System.out.println("Soy primero: \n" + v.toString());
     //elige la parte esencial del vestido
     if ("Reloj".equals(l.getTipoC())) {
-      a = (int) (Math.random() * 2);
-      v = cambiarPieza(v, a, lista);
-    } else {
+      //a = (int) (Math.random() * 2);
       v = cambiarPieza(v, 1, lista);
+    } else {
+      v = cambiarPieza(v, 2, lista);
     }
     //modifica ligeramente el vestido
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
       a = ((int) (Math.random() * 3)) + 2;
+      //a = ((int) (Math.random() * 5)) + 1;
       v = cambiarPieza(v, a, lista);
+     // System.out.println(i+" \n" + v.toString());
     }
 
-    System.out.println("Soy primero: " + v.toString());
+    
     //realiza readaptación             
     if (l.getTiempo() == "dia") {
       v = dia(v, l);
@@ -87,6 +89,8 @@ public class Model {
   public static Vestido cambiarPieza(Vestido vB, int num, ArrayList<Vestido> lista) {
     int a = (int) (Math.random() * lista.size());
     Vestido r = lista.get(a);
+    //System.out.println("Tam: " + lista.size() + " Num:"+num + "\nVestidoAzar"+ r.toString()+"\nVestidoOriginal: " + vB.toString());
+    
     switch (num) {
       case 0:
         vB.setFalda(r.getFalda());
@@ -632,5 +636,4 @@ public class Model {
       bw.close();
     }
   }
-
 }
