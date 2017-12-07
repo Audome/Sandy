@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Sandy {
 
-  static Controlador c;
+  static Model c;
   
-  public Sirve(){
+  public Sandy(){
     c = new Model();
   }
   public static void main(String[] args) throws IOException {
