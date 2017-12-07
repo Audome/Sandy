@@ -55,5 +55,14 @@ class Etiqueta {
   public void setColor(String color) {
     this.color = color;
   }
+
+  @Override
+  public String toString() {
+    return "Tipo de Cuerpo: " + getTipoC() + "\n" +
+        "Evento: " + getEvento() + "\n" +
+        "Lugar: " + getLugar() + "\n" +
+        "Tiempo: " + getTiempo() + "\n" +
+        "Color: " + getColor() + "\n"; //To change body of generated methods, choose Tools | Templates.
+  }
   
 }

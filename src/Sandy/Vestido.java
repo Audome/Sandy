@@ -4,6 +4,15 @@ public class Vestido {
 
   String tiro, falda, escote, mangas, largoF, decoracion;
 
+  public Vestido(String tiro, String falda, String escote, String mangas, String largoF, String decoracion) {
+    this.tiro = tiro;
+    this.falda = falda;
+    this.escote = escote;
+    this.mangas = mangas;
+    this.largoF = largoF;
+    this.decoracion = decoracion;
+  }
+
   public Vestido(Vestido base) {
     tiro = base.getTiro();
     falda = base.getFalda();
@@ -63,6 +72,12 @@ public class Vestido {
 
   @Override
   public String toString() {
-    return super.toString(); //To change body of generated methods, choose Tools | Templates.
+    return "Escote: " + getEscote() + "\n" +
+        "Mangas: " + getMangas() + "\n" +
+        "Falda: " + getFalda() + "\n" +
+        "Tiro: " + getTiro() + "\n" +
+        "Largo Falda: " + getLargoF() + "\n" +
+        "Decoración: " + getDecoracion() + 
+        "--------------------------------------"; //To change body of generated methods, choose Tools | Templates.
   }
 }
