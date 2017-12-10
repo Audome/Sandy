@@ -17,8 +17,8 @@ public class Sandy {
     Controler controla = new Controler(pm1);
     JFrame frame = new JFrame("Sandy");
     sandy.ventana(pm1, frame);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(550, 400);
     frame.setVisible(true);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 }
