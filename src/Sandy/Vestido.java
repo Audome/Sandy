@@ -77,7 +77,7 @@ public class Vestido {
         + "Falda: " + getFalda() + "\n"
         + "Tiro: " + getTiro() + "\n"
         + "Largo Falda: " + getLargoF() + "\n"
-        + "Decoración: " + getDecoracion()
-        + "--------------------------------------"; //To change body of generated methods, choose Tools | Templates.
+        + "Decoración: " + getDecoracion() + "\n"
+        + "--------------------------------------" + "\n"; //To change body of generated methods, choose Tools | Templates.
   }
 }

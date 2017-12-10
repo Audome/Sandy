@@ -2,13 +2,13 @@ package Sandy;
 
 import java.io.*;
 import java.util.ArrayList;
+import javax.swing.JTextArea;
 
 public class Model {
 
-  public Model() {
+  public Model() { }
 
-  }
-  public static ArrayList buscar(Etiqueta e, int coin) throws IOException {
+  public ArrayList buscar(Etiqueta e, int coin) throws IOException {
     ArrayList<Vestido> lista = new ArrayList();
     BufferedReader br = null;
     br = new BufferedReader(new FileReader("Vestidos.txt"));
@@ -35,7 +35,6 @@ public class Model {
           if (e.color.equals(partes[4])) {
             total = total + 10;
           }
-
           if (total >= coin) {
             Vestido v = new Vestido(partes[5], partes[6], partes[7], partes[8], partes[9], partes[10]);
             lista.add(v);
@@ -52,12 +51,12 @@ public class Model {
     return lista;
   }
 
-  public static Diseño reusar(Etiqueta l, ArrayList<Vestido> lista) {
+  public Diseño reusar(Etiqueta l, ArrayList<Vestido> lista, JTextArea resultArea) {
     Diseño d;
     //elige vestido base
     int a = (int) (Math.random() * lista.size());
     Vestido v = lista.get(a);
-    System.out.println("Soy primero: \n" + v.toString());
+    resultArea.append("Primer vestido: \n" + v.toString());
     //elige la parte esencial del vestido
     if ("Reloj".equals(l.getTipoC())) {
       //a = (int) (Math.random() * 2);
@@ -70,10 +69,8 @@ public class Model {
       a = ((int) (Math.random() * 3)) + 2;
       //a = ((int) (Math.random() * 5)) + 1;
       v = cambiarPieza(v, a, lista);
-     // System.out.println(i+" \n" + v.toString());
+      // System.out.println(i+" \n" + v.toString());
     }
-
-    
     //realiza readaptación             
     if (l.getTiempo() == "dia") {
       v = dia(v, l);
@@ -81,7 +78,7 @@ public class Model {
       v = noche(v, l);
     }
     v = coordinar(v, l);
-    System.out.println(v.toString());
+    resultArea.append(v.toString());
     d = new Diseño(v, l);
     return d;
   }
@@ -90,7 +87,7 @@ public class Model {
     int a = (int) (Math.random() * lista.size());
     Vestido r = lista.get(a);
     //System.out.println("Tam: " + lista.size() + " Num:"+num + "\nVestidoAzar"+ r.toString()+"\nVestidoOriginal: " + vB.toString());
-    
+
     switch (num) {
       case 0:
         vB.setFalda(r.getFalda());
@@ -536,14 +533,14 @@ public class Model {
     return v;
   }
 
-  public static double evaluar(Diseño vestidoBase) throws IOException {
+  public double evaluar(Diseño vestidoBase, JTextArea resultArea) throws IOException {
     double coincidenciaActual = 0;
-    coincidenciaActual = coincidenciaActual + diseño(vestidoBase);
-    coincidenciaActual = coincidenciaActual + originalidad(vestidoBase);
+    coincidenciaActual = coincidenciaActual + diseño(vestidoBase, resultArea);
+    coincidenciaActual = coincidenciaActual + originalidad(vestidoBase, resultArea);
     return coincidenciaActual;
   }
 
-  public static double diseño(Diseño vB) {
+  public static double diseño(Diseño vB, JTextArea resultArea) {
     double total = 0;
     if (vB.etiqueta.tipoC.equals("Pera")) {
       if (vB.vestido.escote.equals("HCaido") || vB.vestido.escote.equals("Asimetrico")
@@ -568,17 +565,17 @@ public class Model {
       if (vB.vestido.falda.equals("Lapiz") || vB.vestido.falda.equals("Tubo")) {
         total++;
       }
-      if ((checarEstilo(0, vB.vestido) == 1 && (checarEstilo(2, vB.vestido) == 0 ))||
-          (checarEstilo(0, vB.vestido) == 0 && (checarEstilo(2, vB.vestido) == 1 ))||
-          (checarEstilo(0, vB.vestido) == 0 && (checarEstilo(2, vB.vestido) == 0 ))){
+      if ((checarEstilo(0, vB.vestido) == 1 && (checarEstilo(2, vB.vestido) == 0))
+          || (checarEstilo(0, vB.vestido) == 0 && (checarEstilo(2, vB.vestido) == 1))
+          || (checarEstilo(0, vB.vestido) == 0 && (checarEstilo(2, vB.vestido) == 0))) {
         total++;
       }
     }
-    System.out.println("Diseño: " + total);
+    resultArea.append("Diseño: " + total + "\n");
     return total;
   }
 
-  public static double originalidad(Diseño vestidoBase) throws IOException {
+  public static double originalidad(Diseño vestidoBase, JTextArea resultArea) throws IOException {
     double originalidad = 0;
     BufferedReader br = null;
     br = new BufferedReader(new FileReader("Vestidos.txt"));
@@ -619,16 +616,16 @@ public class Model {
     } finally {
       br.close();
     }
-    originalidad = 6- originalidad;
-    System.out.println("Originalidad: " + originalidad);
+    originalidad = 6 - originalidad;
+    resultArea.append("Originalidad: " + originalidad + "\n");
     return originalidad;
   }
 
-  public static void guardar(Diseño e) throws IOException {
+  public void guardar(Diseño e) throws IOException {
     BufferedWriter bw = new BufferedWriter(new FileWriter("Vestidos.txt", true));
     try {
       String diseño = e.toString();
-      System.out.print(diseño);
+      //System.out.print(diseño);
       bw.append(diseño + "\n");
     } catch (Exception ex) {
       ex.printStackTrace();
