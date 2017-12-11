@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,58 +38,69 @@ public class Controler implements ActionListener {
     double calif = 0;
     //los porcentajes van de 0, 25, 50, 75 y 100
     int porOriginal = 65, porCoincidencia = 0;
+    String tc, t, ev, l, co;
     switch (ae.getActionCommand()) {
       case "Crear":
-        String tc = (String) ver.comboTypesList.getSelectedItem();
-        String t = (String) ver.comboTypesList1.getSelectedItem();
-        String ev = (String) ver.comboTypesList2.getSelectedItem();
-        String l = (String) ver.comboTypesList3.getSelectedItem();
-        String co = (String) ver.comboTypesList4.getSelectedItem();
-        //aquí empieza la ejecución de Sandy
-        e = new Etiqueta(tc, t, ev, l, co);
-        ver.resultArea.append("Comenzando la ejecución\n");
-        try {
-          //primero llama a buscar
-          //System.out.println("Buscando coincidencias");
-          lista = c.buscar(e, porCoincidencia);
-          //luego reusar. Reusar elige el vestido Base y le hace las modificaciones necesarias
-          d = c.reusar(e, lista, ver.resultArea);
-          //luego llama evaluar
-          //System.out.println(d.vestido.toString());
-          calif = c.evaluar(d, ver.resultArea);
-          ver.resultArea.append("Final: " + calif + "\n\n");
-        } catch (IOException ex) {
-          Logger.getLogger(Controler.class.getName()).log(Level.SEVERE, null, ex);
+        if ((ver.comboTypesList.getSelectedIndex() != 0) && (ver.comboTypesList2.getSelectedIndex() != 0)
+                && (ver.comboTypesList3.getSelectedIndex() != 0) && (ver.comboTypesList4.getSelectedIndex() != 0)) {
+          tc = (String) ver.comboTypesList.getSelectedItem();
+          t = (String) ver.comboTypesList1.getSelectedItem();
+          ev = (String) ver.comboTypesList2.getSelectedItem();
+          l = (String) ver.comboTypesList3.getSelectedItem();
+          co = (String) ver.comboTypesList4.getSelectedItem();
+          //aquí empieza la ejecución de Sandy
+          e = new Etiqueta(tc, t, ev, l, co);
+          ver.resultArea.append("Comenzando la ejecución\n");
+          try {
+            //primero llama a buscar
+            //System.out.println("Buscando coincidencias");
+            lista = c.buscar(e, porCoincidencia);
+            //luego reusar. Reusar elige el vestido Base y le hace las modificaciones necesarias
+            d = c.reusar(e, lista, ver.resultArea);
+            //luego llama evaluar
+            //System.out.println(d.vestido.toString());
+            calif = c.evaluar(d, ver.resultArea);
+            ver.resultArea.append("Final: " + calif + "\n\n");
+          } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Error");
+          }
+          //System.out.println("Final: " + calif);
+          //finalmente llama guardar. Guardar decide si lo guarda o no
+          //c.guardar(d);
+        } else {
+          JOptionPane.showMessageDialog(null, "Campos sin seleccionar");
         }
-        //System.out.println("Final: " + calif);
-        //finalmente llama guardar. Guardar decide si lo guarda o no
-        //c.guardar(d);
         break;
       case "Reintentar":
-        tc = (String) ver.comboTypesList.getSelectedItem();
-        t = (String) ver.comboTypesList1.getSelectedItem();
-        ev = (String) ver.comboTypesList2.getSelectedItem();
-        l = (String) ver.comboTypesList3.getSelectedItem();
-        co = (String) ver.comboTypesList4.getSelectedItem();
-        //aquí empieza la ejecución de Sandy
-        e = new Etiqueta(tc, t, ev, l, co);
-        ver.resultArea.append("+++++++++++++++++++++++++++\n");
-        ver.resultArea.append("Comenzando de nuevo\n");
-        try {
-          //primero llama a buscar
-          //System.out.println("Buscando coincidencias");
-          lista = c.buscar(e, porCoincidencia);
-          //luego reusar. Reusar elige el vestido Base y le hace las modificaciones necesarias
-          d = c.reusar(e, lista, ver.resultArea);
-          //luego llama evaluar
-          //System.out.println(d.vestido.toString());
-          calif = c.evaluar(d, ver.resultArea);
-          ver.resultArea.append("Final: " + calif + "\n\n");
-        } catch (IOException ex) {
-          Logger.getLogger(Controler.class.getName()).log(Level.SEVERE, null, ex);
+        if ((ver.comboTypesList.getSelectedIndex() != 0) && (ver.comboTypesList2.getSelectedIndex() != 0)
+                && (ver.comboTypesList3.getSelectedIndex() != 0) && (ver.comboTypesList4.getSelectedIndex() != 0)) {
+          tc = (String) ver.comboTypesList.getSelectedItem();
+          t = (String) ver.comboTypesList1.getSelectedItem();
+          ev = (String) ver.comboTypesList2.getSelectedItem();
+          l = (String) ver.comboTypesList3.getSelectedItem();
+          co = (String) ver.comboTypesList4.getSelectedItem();
+          //aquí empieza la ejecución de Sandy
+          e = new Etiqueta(tc, t, ev, l, co);
+          ver.resultArea.append("+++++++++++++++++++++++++++\n");
+          ver.resultArea.append("Comenzando de nuevo\n");
+          try {
+            //primero llama a buscar
+            //System.out.println("Buscando coincidencias");
+            lista = c.buscar(e, porCoincidencia);
+            //luego reusar. Reusar elige el vestido Base y le hace las modificaciones necesarias
+            d = c.reusar(e, lista, ver.resultArea);
+            //luego llama evaluar
+            //System.out.println(d.vestido.toString());
+            calif = c.evaluar(d, ver.resultArea);
+            ver.resultArea.append("Final: " + calif + "\n\n");
+          } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Error");
+          }
+          //finalmente llama guardar. Guardar decide si lo guarda o no
+          //c.guardar(d);
+        }else {
+          JOptionPane.showMessageDialog(null, "Campos sin seleccionar");
         }
-        //finalmente llama guardar. Guardar decide si lo guarda o no
-        //c.guardar(d);
         break;
     }
   }
