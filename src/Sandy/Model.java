@@ -2,17 +2,18 @@ package Sandy;
 
 import java.io.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 public class Model {
 
   public Model() { }
 
-  public ArrayList buscar(Etiqueta e, int coin) throws IOException {
+  public ArrayList buscar(Etiqueta e, int coin) throws Exception {
     ArrayList<Vestido> lista = new ArrayList();
     BufferedReader br = null;
-    br = new BufferedReader(new FileReader("Vestidos.txt"));
     try {
+      br = new BufferedReader(new FileReader("Vestidos.txt"));
       String line = "";
       while ((line = br.readLine()) != null) {
         int total = 0;
@@ -42,12 +43,10 @@ public class Model {
           }
         }
       }
-    } catch (Exception ex) {
-      ex.printStackTrace();
-      return null;
-    } finally {
       br.close();
-    }
+    } catch (Exception ex) {
+      JOptionPane.showMessageDialog(null,"Error al leer BD");
+    } 
     return lista;
   }
 
@@ -577,8 +576,7 @@ public class Model {
 
   public static double originalidad(Diseño vestidoBase, JTextArea resultArea) throws IOException {
     double originalidad = 0;
-    BufferedReader br = null;
-    br = new BufferedReader(new FileReader("Vestidos.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("Vestidos.txt"));
     Vestido vestido = vestidoBase.getVestido();
     try {
       String line = "";
@@ -612,7 +610,7 @@ public class Model {
         }
       }
     } catch (Exception ex) {
-      ex.printStackTrace();
+      JOptionPane.showMessageDialog(null,"Error");
     } finally {
       br.close();
     }
@@ -622,15 +620,15 @@ public class Model {
   }
 
   public void guardar(Diseño e) throws IOException {
-    BufferedWriter bw = new BufferedWriter(new FileWriter("Vestidos.txt", true));
+    BufferedWriter bw;
     try {
+      bw = new BufferedWriter(new FileWriter("Vestidos.txt", true));
       String diseño = e.toString();
       //System.out.print(diseño);
       bw.append(diseño + "\n");
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    } finally {
       bw.close();
+    } catch (Exception ex) {
+      JOptionPane.showMessageDialog(null,"No se pudo guardar");
     }
   }
 }

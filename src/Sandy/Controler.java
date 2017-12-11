@@ -50,8 +50,8 @@ public class Controler implements ActionListener {
           co = (String) ver.comboTypesList4.getSelectedItem();
           //aquí empieza la ejecución de Sandy
           e = new Etiqueta(tc, t, ev, l, co);
-          ver.resultArea.append("Comenzando la ejecución\n");
           try {
+            ver.resultArea.append("Comenzando la ejecución\n");
             //primero llama a buscar
             //System.out.println("Buscando coincidencias");
             lista = c.buscar(e, porCoincidencia);
